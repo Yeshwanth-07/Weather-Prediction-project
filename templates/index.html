@@ -1,0 +1,121 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Prediction</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #6dd5ed, #2193b0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2193b0;
+            margin-bottom: 1rem;
+            font-size: 24px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 1rem;
+            display: block;
+            color: #555;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            border-color: #2193b0;
+            outline: none;
+        }
+
+        button {
+            background: #2193b0;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 1.5rem;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #1a7a92;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            font-size: 18px;
+            color: #2193b0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Weather Prediction</h2>
+        <form action="/predict" method="POST">
+            <label for="temp">Temperature (°C):</label>
+            <input type="number" id="temp" name="Temp_C" step="0.1" required>
+            
+            <label for="dew_point">Dew Point Temperature (°C):</label>
+            <input type="number" id="dew_point" name="Dew Point Temp_C" step="0.1" required>
+            
+            <label for="rel_hum">Relative Humidity (%):</label>
+            <input type="number" id="rel_hum" name="Rel Hum_%" step="0.1" required>
+            
+            <label for="wind_speed">Wind Speed (km/h):</label>
+            <input type="number" id="wind_speed" name="Wind Speed_km/h" step="0.1" required>
+            
+            <label for="visibility">Visibility (km):</label>
+            <input type="number" id="visibility" name="Visibility_km" step="0.1" required>
+            
+            <label for="pressure">Pressure (kPa):</label>
+            <input type="number" id="pressure" name="Press_kPa" step="0.1" required>
+            
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">
+                <h3>{{ prediction_text }}</h3>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
